@@ -1,5 +1,14 @@
 <div>
-  <button (click)="randomMove()">rock</button>
-  <button (click)="randomMove()">paper</button>
-  <button (click)="randomMove()">scissors</button>
+  <button (click)="computerMove('rock')">rock</button>
+  <button (click)="computerMove('paper')">paper</button>
+  <button (click)="computerMove('scissor')">scissors</button>
+  <p>{{ result }}</p>
+</div>
+<div>
+  <p>Total Games: {{ totalGames }}</p>
+  <p>Draws: {{ draws }}</p>
+  <p>You: {{ userScore }}</p>
+  <p>Computer: {{ computerScore }}</p>
+  <button (click)="resetScore()">New Game</button>
+  <button (click)="autoPlay()">{{ autoplayText }}</button>
 </div>
