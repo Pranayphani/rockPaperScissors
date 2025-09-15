@@ -1,14 +1,38 @@
-<div>
-  <button (click)="computerMove('rock')">rock</button>
-  <button (click)="computerMove('paper')">paper</button>
-  <button (click)="computerMove('scissor')">scissors</button>
-  <p>{{ result }}</p>
-</div>
-<div>
-  <p>Total Games: {{ totalGames }}</p>
-  <p>Draws: {{ draws }}</p>
-  <p>You: {{ userScore }}</p>
-  <p>Computer: {{ computerScore }}</p>
-  <button (click)="resetScore()">New Game</button>
-  <button (click)="autoPlay()">{{ autoplayText }}</button>
+<div class="container">
+  <div class="emojis-container">
+    <img
+      class="icon"
+      src="/images/rock-emoji.png"
+      (click)="computerMove('rock')"
+    />
+    <img
+      class="icon"
+      src="/images/paper-emoji.png"
+      (click)="computerMove('paper')"
+    />
+    <img
+      class="icon"
+      src="/images/scissors-emoji.png"
+      (click)="computerMove('scissor')"
+    />
+  </div>
+  <div *ngIf="resultVisible" class="result">
+    <div class="result-emojis">
+      <span class="result-user">You</span>
+      <img class="icon-selected" src="{{ userPickEmoji }}" /> -
+      <img class="icon-selected" src="{{ computerPickEmoji }}" />
+      <span>Computer</span>
+    </div>
+    <p class="result-text">{{ result }}</p>
+  </div>
+  <div>
+    <p>Total Games: {{ totalGames }}</p>
+    <p>Draws: {{ draws }}</p>
+    <p>You: {{ userScore }}</p>
+    <p>Computer: {{ computerScore }}</p>
+    <div class="buttons">
+      <button (click)="resetScore()">New Game</button>
+      <button (click)="autoPlay()">{{ autoplayText }}</button>
+    </div>
+  </div>
 </div>

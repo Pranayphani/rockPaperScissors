@@ -1,0 +1,57 @@
+.container {
+  height: 100vh;
+  color: white;
+  background-color: black;
+  padding: 24px;
+}
+.icon {
+  margin-right: 16px;
+  border-radius: 80px;
+  cursor: pointer;
+  height: 120px;
+  width: 120px;
+  padding: 14px;
+}
+.icon-selected {
+  margin-right: 12px;
+  height: 100px;
+  width: 100px;
+}
+.icon:hover {
+  border: white 2px solid;
+}
+.emojis-container {
+  margin-bottom: 20px;
+  padding: 12px;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  margin-left: 12px;
+  margin-bottom: 12px;
+}
+.result-emojis {
+  padding: 12px;
+  display: flex;
+  align-items: center;
+}
+.result-text {
+  margin-left: 110px;
+}
+.buttons {
+  margin-top: 12px;
+}
+button {
+  background-color: white;
+  padding: 8px;
+  border-radius: 8px;
+  border: none;
+  color: black;
+  margin-right: 6px;
+  cursor: pointer;
+}
+button:hover {
+  color: white;
+  border: 1px white solid;
+  background-color: black;
+}

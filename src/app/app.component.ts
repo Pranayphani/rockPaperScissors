@@ -1,9 +1,10 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, CommonModule],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -17,9 +18,19 @@ export class AppComponent implements OnInit {
   protected autoplaySetup: boolean = false;
   protected autoplayText: string = 'Auto Play';
   protected id!: any;
+  protected userPickEmoji!: any;
+  protected computerPickEmoji!: any;
+  protected resultVisible: boolean = false;
 
   protected computerMove(user: string) {
     let userPick = user;
+    if (userPick == 'rock') {
+      this.userPickEmoji = '/images/rock-emoji.png';
+    } else if (userPick === 'paper') {
+      this.userPickEmoji = '/images/paper-emoji.png';
+    } else {
+      this.userPickEmoji = '/images/scissors-emoji.png';
+    }
     let computerPick = '';
     let randomNumber = Number(Math.random().toFixed(1));
     if (randomNumber <= 1 / 3) {
@@ -30,6 +41,13 @@ export class AppComponent implements OnInit {
       computerPick = 'scissor';
     }
 
+    if (computerPick == 'rock') {
+      this.computerPickEmoji = '/images/rock-emoji.png';
+    } else if (computerPick === 'paper') {
+      this.computerPickEmoji = '/images/paper-emoji.png';
+    } else {
+      this.computerPickEmoji = '/images/scissors-emoji.png';
+    }
     this.playGame(userPick, computerPick);
   }
 
@@ -48,33 +66,35 @@ export class AppComponent implements OnInit {
   }
 
   protected resetScore() {
+    this.resultVisible = false;
     this.totalGames = 0;
     this.userScore = 0;
     this.computerScore = 0;
     this.draws = 0;
   }
   protected playGame(userPick: string, computerPick: string) {
+    this.resultVisible = true;
     this.totalGames += 1;
     if (userPick === computerPick) {
-      this.result = `user pick: ${userPick} - computer pick: ${computerPick}. Game Draw`;
+      this.result = 'Game Draw';
       this.draws += 1;
     } else if (userPick === 'rock' && computerPick === 'scissor') {
-      this.result = `user pick: ${userPick} - computer pick: ${computerPick}. You Won`;
+      this.result = 'You Won';
       this.userScore += 1;
     } else if (userPick === 'rock' && computerPick === 'paper') {
-      this.result = `user pick: ${userPick} - computer pick: ${computerPick}. You Lose`;
+      this.result = 'You Lose';
       this.computerScore += 1;
     } else if (userPick === 'paper' && computerPick === 'rock') {
-      this.result = `user pick: ${userPick} - computer pick: ${computerPick}. You Won`;
+      this.result = 'You Won';
       this.userScore += 1;
     } else if (userPick === 'paper' && computerPick === 'scissor') {
-      `user pick: ${userPick} - computer pick: ${computerPick}. You Lose`;
+      this.result = 'You Lose';
       this.computerScore += 1;
     } else if (userPick === 'scissor' && computerPick === 'rock') {
-      `user pick: ${userPick} - computer pick: ${computerPick}. You Lose`;
+      this.result = 'You Lose';
       this.computerScore += 1;
     } else if (userPick === 'scissor' && computerPick === 'paper') {
-      `user pick: ${userPick} - computer pick: ${computerPick}. You Won`;
+      this.result = 'You Won';
       this.userScore += 1;
     }
 
@@ -99,6 +119,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.resultVisible = false;
     const storedGames = localStorage.getItem('totalgames');
     const storedWins = localStorage.getItem('wins');
     const storedLoses = localStorage.getItem('loses');
